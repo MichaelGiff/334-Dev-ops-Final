@@ -1,4 +1,4 @@
-## Recipe Recomender Algorithm 
+## Recipe Recommender Algorithm 
 
 ### Recipe guide book that :
   ##### -takes in input
