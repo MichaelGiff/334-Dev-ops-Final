@@ -1,8 +1,8 @@
-## Recipe Recommender Algorithm 
+## Recipe Recommender Web-UI
 
 
 ### Team Members
-##### -----------------
+##### ----------------------------------------------
   ##### - Michael Gifford
   ##### - Junyou Guo
 ### Recipe guide book that :
@@ -14,4 +14,6 @@
 ### Testing :
   ##### -suggesting correct ingredients 
   ##### -testing correctness of output
-  ##### -testing rating system of dishes 
+  ##### -testing rating system of dishes
+### Deployment :
+  ##### -Automatic deployment when changes are merged to the main branch 
