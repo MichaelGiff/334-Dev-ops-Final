@@ -1,5 +1,7 @@
 ## Recipe Recommender Web-UI
 
+### Description
+  ##### a simple recipe recommender website with a simple UI giving recipes based off of simple input of ingredients dietary type / preference. user will input meal type (breakfast,lunch,dinner) main ingredients/ other specifications, web app returns recipe options
 
 ### Team Members
 ##### ----------------------------------------------
