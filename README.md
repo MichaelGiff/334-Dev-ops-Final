@@ -1,5 +1,10 @@
 ## Recipe Recommender Algorithm 
 
+
+### Team Members
+##### -----------------
+  ##### - Michael Gifford
+  ##### - Junyou Guo
 ### Recipe guide book that :
   ##### -takes in input
   ##### -using google or AI api call to scrape/ find recipes
