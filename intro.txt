@@ -1,0 +1,98 @@
+Tech Stack
+
+We should keep the project simple and easy to test, so this is the recommended tech stack:
+
+- Backend: Python + Flask
+- Frontend: HTML, CSS, basic JavaScript
+- Testing: pytest
+- Version Control: GitHub
+- CI/CD Automation: GitHub Actions
+- Deployment: optional later, but can be set to auto-deploy when changes are merged into the main branch
+
+Why this stack:
+- Flask is lightweight and easy to set up
+- Python makes the recommendation logic simple to build
+- pytest is easy for unit testing
+- GitHub Actions is straightforward for CI automation
+- This stack is enough to demonstrate CI/CD concepts clearly for the class project
+
+
+Project Structure
+
+recipe-recommender/
+│
+├── app.py
+├── recommender.py
+├── recipes.py
+├── requirements.txt
+├── README.md
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   ├── style.css
+│   └── script.js
+│
+├── tests/
+│   └── test_recommender.py
+│
+└── .github/
+    └── workflows/
+        └── tests.yml
+
+
+File Purpose
+
+- app.py
+  Main Flask application. Handles routes, form submission, and displaying results.
+
+- recommender.py
+  Contains the main recipe recommendation logic.
+
+- recipes.py
+  Stores sample recipe data for the first version of the project.
+
+- requirements.txt
+  Lists Python dependencies such as Flask and pytest.
+
+- README.md
+  Explains the project, setup steps, testing, and workflow.
+
+- templates/index.html
+  Main web page where users input meal type, ingredients, and preferences.
+
+- static/style.css
+  Basic styling for the website.
+
+- static/script.js
+  Optional JavaScript for simple UI interactions.
+
+- tests/test_recommender.py
+  Unit tests for checking recommendation logic and rating behavior.
+
+- .github/workflows/tests.yml
+  GitHub Actions workflow file that automatically runs tests on push or pull request.
+
+
+Suggested First Version
+
+For the first version, we should not use a real API yet.
+Instead, we can create a simple local recipe dataset and build the recommendation logic around that.
+
+Example first-version features:
+- User selects meal type
+- User enters ingredients
+- User optionally selects dietary preference
+- App returns a few matching recipe suggestions
+- App includes a simple 1–5 star rating system
+
+This keeps the project manageable and makes testing much easier.
+
+
+Possible Team Division
+
+  Flask routes, front-end UI, form handling
+  Recommendation logic, test cases, GitHub Actions, README setup
+
+This division is flexible, it also gives both team members a clear contribution.
