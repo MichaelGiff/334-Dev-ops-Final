@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="page-shell">
+        <section class="hero">
+            <p class="eyebrow">Recipe Recommender</p>
+            <h1>Find a meal from what you already have.</h1>
+            <p class="subcopy">
+                Choose a meal type, list a few ingredients, and get recipe suggestions from
+                our sample collection.
+            </p>
+        </section>
+
+        <section class="panel">
+            <form method="post" class="recipe-form">
+                <label>
+                    Meal Type
+                    <select name="meal_type">
+                        <option value="" {% if not form_data.meal_type %}selected{% endif %}>Any</option>
+                        <option value="breakfast" {% if form_data.meal_type == "breakfast" %}selected{% endif %}>Breakfast</option>
+                        <option value="lunch" {% if form_data.meal_type == "lunch" %}selected{% endif %}>Lunch</option>
+                        <option value="dinner" {% if form_data.meal_type == "dinner" %}selected{% endif %}>Dinner</option>
+                    </select>
+                </label>
+
+                <label>
+                    Ingredients
+                    <input
+                        type="text"
+                        name="ingredients"
+                        value="{{ form_data.ingredients }}"
+                        placeholder="eggs, tomato, spinach"
+                    >
+                </label>
+
+                <label>
+                    Dietary Preference
+                    <select name="dietary_preference">
+                        <option value="" {% if not form_data.dietary_preference %}selected{% endif %}>Any</option>
+                        <option value="vegetarian" {% if form_data.dietary_preference == "vegetarian" %}selected{% endif %}>Vegetarian</option>
+                        <option value="vegan" {% if form_data.dietary_preference == "vegan" %}selected{% endif %}>Vegan</option>
+                        <option value="high-protein" {% if form_data.dietary_preference == "high-protein" %}selected{% endif %}>High-Protein</option>
+                    </select>
+                </label>
+
+                <button type="submit">Recommend Recipes</button>
+            </form>
+        </section>
+
+        <section class="results">
+            {% if recommendations %}
+                <h2>Recommended Recipes</h2>
+                <div class="result-grid">
+                    {% for recipe in recommendations %}
+                        <article class="recipe-card">
+                            <h3>{{ recipe.name }}</h3>
+                            <p>{{ recipe.description }}</p>
+                            <p><strong>Meal:</strong> {{ recipe.meal_type|title }}</p>
+                            <p><strong>Preference:</strong> {{ recipe.dietary_preference|title }}</p>
+                            <p><strong>Ingredients:</strong> {{ recipe.ingredients|join(', ') }}</p>
+                            <p><strong>Matched:</strong> {{ recipe.matched_ingredients|join(', ') if recipe.matched_ingredients else 'General match' }}</p>
+                            <p><strong>Average Rating:</strong> {{ recipe.average_rating }}/5</p>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% elif form_data.meal_type or form_data.ingredients or form_data.dietary_preference %}
+                <div class="empty-state">
+                    <h2>No matches found</h2>
+                    <p>Try fewer filters or use different ingredients.</p>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
