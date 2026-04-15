@@ -1,0 +1,61 @@
+timestamp,status,tests_run,failures,runtime_seconds,error_message
+2026-04-14T18:42:39.687872,failed,0,0,0.754,"============================= test session starts ==============================
+platform darwin -- Python 3.13.7, pytest-8.3.5, pluggy-1.6.0 -- /Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+__________________ ERROR collecting tests/test_recommender.py __________________
+ImportError while importing test module '/Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final/tests/test_recommender.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_recommender.py:5: in <module>
+    from recommender import add_rating, normalize_ingredients, recommend_recipes
+E   ModuleNotFoundError: No module named 'recommender'
+=========================== short test summary info ============================
+ERROR tests/test_recommender.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.08s ==============================="
+2026-04-14T18:44:34.022444,failed,0,0,0.267,"============================= test session starts ==============================
+platform darwin -- Python 3.13.7, pytest-8.3.5, pluggy-1.6.0 -- /Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+__________________ ERROR collecting tests/test_recommender.py __________________
+ImportError while importing test module '/Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final/tests/test_recommender.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_recommender.py:5: in <module>
+    from recommender import add_rating, normalize_ingredients, recommend_recipes
+E   ModuleNotFoundError: No module named 'recommender'
+=========================== short test summary info ============================
+ERROR tests/test_recommender.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.07s ==============================="
+2026-04-14T19:02:13.232046,failed,0,0,0.272,"============================= test session starts ==============================
+platform darwin -- Python 3.13.7, pytest-8.3.5, pluggy-1.6.0 -- /Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+__________________ ERROR collecting tests/test_recommender.py __________________
+ImportError while importing test module '/Users/michael/Desktop/recipe-recommender/334-Dev-ops-Final/tests/test_recommender.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_recommender.py:5: in <module>
+    from recommender import add_rating, normalize_ingredients, recommend_recipes
+E   ModuleNotFoundError: No module named 'recommender'
+=========================== short test summary info ============================
+ERROR tests/test_recommender.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.07s ==============================="
