@@ -1,13 +1,12 @@
 :root {
-    --bg: #f3efe4;
-    --panel: rgba(255, 251, 245, 0.88);
-    --ink: #1d2b1f;
-    --muted: #5b665d;
-    --accent: #d96f32;
-    --accent-dark: #ab4f1d;
-    --card: #fffdf8;
-    --border: rgba(29, 43, 31, 0.12);
-    --shadow: 0 20px 45px rgba(70, 44, 22, 0.12);
+    --bg: #f7f8fa;
+    --panel: #ffffff;
+    --ink: #1f2937;
+    --muted: #4b5563;
+    --accent: #2563eb;
+    --accent-dark: #1d4ed8;
+    --border: #d1d5db;
+    --success: #166534;
 }
 
 * {
@@ -16,12 +15,9 @@
 
 body {
     margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: var(--ink);
-    background:
-        radial-gradient(circle at top left, rgba(217, 111, 50, 0.18), transparent 28%),
-        radial-gradient(circle at right, rgba(92, 138, 77, 0.14), transparent 24%),
-        linear-gradient(180deg, #fbf6eb 0%, var(--bg) 100%);
+    background: var(--bg);
     min-height: 100vh;
 }
 
@@ -38,15 +34,15 @@ body {
 
 .eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0;
     font-size: 0.78rem;
-    color: var(--accent-dark);
+    color: var(--accent);
     margin-bottom: 0.5rem;
 }
 
 .hero h1 {
-    font-size: clamp(2.4rem, 4vw, 4.4rem);
-    line-height: 0.98;
+    font-size: 2.5rem;
+    line-height: 1.08;
     margin: 0 0 1rem;
 }
 
@@ -61,10 +57,8 @@ body {
 .recipe-card,
 .empty-state {
     background: var(--panel);
-    backdrop-filter: blur(12px);
     border: 1px solid var(--border);
-    border-radius: 24px;
-    box-shadow: var(--shadow);
+    border-radius: 8px;
 }
 
 .panel {
@@ -87,26 +81,37 @@ body {
 
 .recipe-form input,
 .recipe-form select,
-.recipe-form button {
+.recipe-form button,
+.rating-form select,
+.rating-form button {
     width: 100%;
-    border-radius: 14px;
-    border: 1px solid rgba(29, 43, 31, 0.15);
+    border-radius: 6px;
+    border: 1px solid var(--border);
     padding: 0.85rem 1rem;
     font: inherit;
 }
 
-.recipe-form button {
+.recipe-form button,
+.rating-form button {
     background: var(--accent);
     color: white;
     border: none;
     font-weight: 700;
     cursor: pointer;
-    transition: transform 160ms ease, background 160ms ease;
 }
 
-.recipe-form button:hover {
-    transform: translateY(-1px);
+.recipe-form button:hover,
+.rating-form button:hover {
     background: var(--accent-dark);
+}
+
+.status-message {
+    border: 1px solid rgba(22, 101, 52, 0.25);
+    border-radius: 8px;
+    color: var(--success);
+    background: #f0fdf4;
+    margin: 0 0 1.5rem;
+    padding: 0.85rem 1rem;
 }
 
 .results h2 {
@@ -135,15 +140,27 @@ body {
     line-height: 1.5;
 }
 
+.rating-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
+    align-items: end;
+    margin-top: 1rem;
+}
+
+.rating-form label {
+    display: grid;
+    gap: 0.4rem;
+    font-weight: 700;
+}
+
 @media (max-width: 640px) {
     .page-shell {
         width: min(100% - 1rem, 1080px);
         padding-top: 1.25rem;
     }
 
-    .panel,
-    .recipe-card,
-    .empty-state {
-        border-radius: 18px;
+    .hero h1 {
+        font-size: 2rem;
     }
 }

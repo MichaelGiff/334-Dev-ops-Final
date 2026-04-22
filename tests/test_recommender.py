@@ -29,12 +29,27 @@ def test_recommend_recipes_sorts_by_number_of_matched_ingredients():
 
     assert recipes[0]["name"] == "Tofu Stir Fry"
     assert recipes[0]["match_score"] == 3
+    assert recipes[0]["missing_ingredients"] == ["tofu"]
 
 
 def test_recommend_recipes_returns_empty_when_no_ingredient_matches():
-    recipes = recommend_recipes(ingredients_text="salmon, dill")
+    recipes = recommend_recipes(ingredients_text="pineapple, mint")
 
     assert recipes == []
+
+
+def test_recommend_recipes_accepts_common_ingredient_aliases():
+    recipes = recommend_recipes(ingredients_text="egg, tomatoes")
+
+    assert recipes[0]["name"] == "Veggie Omelet"
+    assert recipes[0]["match_score"] == 2
+
+
+def test_vegetarian_preference_can_include_vegan_recipes():
+    recipes = recommend_recipes(dietary_preference="vegetarian", ingredients_text="rice, avocado")
+    recipe_names = {recipe["name"] for recipe in recipes}
+
+    assert "Black Bean Taco Bowl" in recipe_names
 
 
 def test_add_rating_updates_average_rating():
@@ -49,6 +64,14 @@ def test_add_rating_updates_average_rating():
 def test_add_rating_rejects_invalid_rating():
     with pytest.raises(ValueError, match="between 1 and 5"):
         add_rating("Veggie Omelet", 6, deepcopy(RECIPES))
+
+
+def test_add_rating_accepts_string_rating_from_form():
+    recipe_copy = deepcopy(RECIPES)
+
+    average_rating = add_rating("Veggie Omelet", "5", recipe_copy)
+
+    assert average_rating == 4.67
 
 
 def test_add_rating_raises_when_recipe_is_missing():
