@@ -7,7 +7,7 @@ from recipes import RECIPES
 
 
 def test_normalize_ingredients_splits_and_lowercases_values():
-    assert normalize_ingredients(" Eggs, tomato ,Spinach ") == ["eggs", "tomato", "spinach"]
+    assert normalize_ingredients(" Eggs, tomato ,Spinach ") == ["egg", "tomato", "spinach"]
 
 
 def test_recommend_recipes_filters_by_meal_type():

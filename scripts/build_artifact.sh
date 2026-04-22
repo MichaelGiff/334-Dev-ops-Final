@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export LC_ALL=C
+export LANG=C
 
 APP_NAME="${APP_NAME:-recipe-recommender}"
 VERSION="${VERSION:-$(git rev-parse --short HEAD 2>/dev/null || echo local)}"
@@ -12,7 +14,7 @@ rm -rf "$PACKAGE_DIR"
 mkdir -p "$PACKAGE_DIR" "$DIST_DIR"
 
 cp app.py recommender.py recipes.py requirements.txt README.md "$PACKAGE_DIR"/
-cp -R static templates tests scripts "$PACKAGE_DIR"/
+cp -R static templates scripts "$PACKAGE_DIR"/
 
 {
     echo "app_name=${APP_NAME}"

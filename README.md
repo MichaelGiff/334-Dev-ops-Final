@@ -13,6 +13,15 @@ The main focus of this project is the automation pipeline: install, test, smoke 
 - Bash scripts for Linux automation
 - GitHub Actions for CI/CD
 
+## Services and Tools
+
+- Flask: Runs the web application and handles the recipe form, results page, rating route, and `/health` endpoint.
+- pytest: Runs automated unit and integration tests.
+- Bash scripts: Automate common Linux commands for installing, testing, smoke testing, and building the app.
+- GitHub: Stores the project code and tracks changes with Git.
+- GitHub Actions: Runs the CI/CD pipeline automatically when code is pushed or a pull request is opened.
+- tar.gz artifact: Packages the web app into a compressed deployment file that can be downloaded from the pipeline.
+
 ## Project Structure
 
 ```text
@@ -110,6 +119,34 @@ The CI/CD pipeline should automatically:
 7. Upload the artifact in GitHub Actions.
 
 This gives us proof that every push can be tested and packaged automatically.
+
+## Developer Workflow
+
+Create a branch for each feature:
+
+```bash
+git checkout main
+git pull
+git checkout -b feature-name
+```
+
+Before pushing, run the same checks that GitHub Actions will run:
+
+```bash
+bash scripts/test.sh
+bash scripts/smoke_test.sh
+bash scripts/build_artifact.sh
+```
+
+Then commit and push:
+
+```bash
+git add .
+git commit -m "Describe the feature"
+git push -u origin feature-name
+```
+
+After pushing, GitHub Actions runs automatically. If the run passes, open the Actions tab and download the `recipe-recommender-deployment` artifact.
 
 ## Useful Demo Commands
 

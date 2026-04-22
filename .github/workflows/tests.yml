@@ -1,14 +1,12 @@
-name: Run Tests
+name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
-      - master
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  test:
+  test-build-artifact:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +19,22 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: bash scripts/install.sh
 
-      - name: Run unit tests
-        run: pytest
+      - name: Run unit and integration tests
+        run: bash scripts/test.sh
+
+      - name: Run Flask smoke test
+        run: bash scripts/smoke_test.sh
+
+      - name: Build tar.gz deployment artifact
+        run: bash scripts/build_artifact.sh
+
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: recipe-recommender-deployment
+          path: |
+            dist/*.tar.gz
+            dist/latest-artifact.txt
+          if-no-files-found: error
