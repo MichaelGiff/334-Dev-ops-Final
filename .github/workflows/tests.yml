@@ -25,5 +25,8 @@ jobs:
       - name: Install dependencies
         run: bash scripts/install.sh
 
+      - name: Run linter
+        run: python3 -m ruff check .
+        
       - name: Run unit tests
         run: bash scripts/test.sh
