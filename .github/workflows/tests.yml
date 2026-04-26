@@ -10,7 +10,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      PYTHONPATH: .
+      
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -21,7 +23,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: bash scripts/install.sh
 
       - name: Run unit tests
-        run: pytest
+        run: bash scripts/test.sh
