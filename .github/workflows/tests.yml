@@ -1,14 +1,12 @@
-name: Run Tests
+name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - main
-      - master
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  test:
+  validate-and-package:
     runs-on: ubuntu-latest
     env:
       PYTHONPATH: .
@@ -27,6 +25,21 @@ jobs:
 
       - name: Run linter
         run: python3 -m ruff check .
-        
-      - name: Run unit tests
+
+      - name: Run unit and integration tests
         run: bash scripts/test.sh
+
+      - name: Run Flask smoke test
+        run: bash scripts/smoke_test.sh
+
+      - name: Build tar.gz deployment artifact
+        run: bash scripts/build_artifact.sh
+
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: recipe-recommender-deployment
+          path: |
+            dist/*.tar.gz
+            dist/latest-artifact.txt
+          if-no-files-found: error

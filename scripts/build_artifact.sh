@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export LC_ALL=C
+export LANG=C
 
 APP_NAME="${APP_NAME:-recipe-recommender}"
 VERSION="${VERSION:-$(git rev-parse --short HEAD 2>/dev/null || echo local)}"

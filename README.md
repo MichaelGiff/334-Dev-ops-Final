@@ -104,23 +104,61 @@ The CI/CD pipeline should automatically:
 1. Check out the repository.
 2. Set up Python on Ubuntu Linux.
 3. Install dependencies.
-4. Run tests.
-5. Run the Flask smoke test.
-6. Build the `.tar.gz` deployment artifact.
-7. Upload the artifact in GitHub Actions.
+4. Run the linter.
+5. Run tests.
+6. Run the Flask smoke test.
+7. Build the `.tar.gz` deployment artifact.
+8. Upload the artifact in GitHub Actions.
 
 This gives us proof that every push can be tested and packaged automatically.
 
-## Useful Demo Commands
+## Clean Demo Commands
+
+Create a tiny change on a feature branch:
+
+```bash
+git checkout -b demo-small-change
+```
+
+Run the same validation locally that GitHub Actions will run:
 
 ```bash
 cd ~/Desktop/334-Dev-ops-Final
 source .venv/bin/activate
+bash scripts/install.sh
 bash scripts/test.sh
 bash scripts/smoke_test.sh
 bash scripts/build_artifact.sh
 ls -lh dist/
 ```
+
+Commit and push:
+
+```bash
+git add .
+git commit -m "Add small demo change"
+git push -u origin demo-small-change
+```
+
+Then open GitHub and show:
+
+1. The pull request or branch push.
+2. The Actions tab.
+3. The green workflow run.
+4. The `recipe-recommender-deployment` artifact.
+
+## Simple Class Explanation
+
+- We write code on a branch instead of directly on `main`.
+- We push the branch to GitHub.
+- GitHub Actions starts automatically.
+- The pipeline creates a clean Linux environment.
+- It installs dependencies.
+- It lints the code.
+- It runs automated tests.
+- It starts the Flask app and checks the health endpoint.
+- It builds a `.tar.gz` deployment artifact.
+- It uploads the artifact so the build result can be downloaded.
 
 ## Team Members
 

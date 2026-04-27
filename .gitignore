@@ -4,6 +4,10 @@ __pycache__/
 *.pyo
 *.pyd
 .venv/
+build/
+dist/
+.pycache/
+.ruff_cache/
 build_log.csv
 pytest_cache/
 .pytest_cache/
