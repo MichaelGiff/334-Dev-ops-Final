@@ -159,6 +159,7 @@ Then open GitHub and show:
 - It starts the Flask app and checks the health endpoint.
 - It builds a `.tar.gz` deployment artifact.
 - It uploads the artifact so the build result can be downloaded.
+- making small change for the demo
 
 ## Team Members
 

@@ -61,3 +61,19 @@ def test_rating_route_updates_recipe_and_rerenders_results(client):
         assert b"Veggie Omelet" in response.data
     finally:
         RECIPES[:] = original_recipes
+
+
+def test_rating_route_rejects_invalid_rating(client):
+    response = client.post(
+        "/rate",
+        data={
+            "recipe_name": "Veggie Omelet",
+            "rating": "9",
+            "meal_type": "breakfast",
+            "ingredients": "egg, spinach",
+            "dietary_preference": "vegetarian",
+        },
+    )
+
+    assert response.status_code == 400
+    assert b"Rating must be between 1 and 5" in response.data
