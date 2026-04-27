@@ -109,8 +109,30 @@ The CI/CD pipeline should automatically:
 6. Run the Flask smoke test.
 7. Build the `.tar.gz` deployment artifact.
 8. Upload the artifact in GitHub Actions.
+9. Publish the `.tar.gz` file to a GitHub Release when a version tag is pushed.
 
 This gives us proof that every push can be tested and packaged automatically.
+
+## Publish the Tarball to GitHub
+
+Push a version tag to trigger a GitHub Release with the built tarball attached:
+
+```bash
+git tag v1.0.0
+git push origin main --tags
+```
+
+After the workflow finishes, GitHub will create a Release named `v1.0.0` and attach:
+
+```text
+dist/recipe-recommender-v1.0.0.tar.gz
+dist/latest-artifact.txt
+```
+
+You can then demo both:
+
+- The Actions run showing build, test, smoke test, and packaging
+- The Releases page showing the downloadable tarball asset
 
 ## Clean Demo Commands
 
@@ -146,6 +168,7 @@ Then open GitHub and show:
 2. The Actions tab.
 3. The green workflow run.
 4. The `recipe-recommender-deployment` artifact.
+5. The Releases page with the attached `.tar.gz` file after pushing a `v*` tag.
 
 ## Simple Class Explanation
 
