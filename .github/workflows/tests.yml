@@ -8,7 +8,9 @@ on:
 jobs:
   test-build-artifact:
     runs-on: ubuntu-latest
-
+    env:
+      PYTHONPATH: .
+      
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
