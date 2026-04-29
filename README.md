@@ -13,6 +13,15 @@ The main focus of this project is the automation pipeline: install, test, smoke 
 - Bash scripts for Linux automation
 - GitHub Actions for CI/CD
 
+## Services and Tools
+
+- Flask: Runs the web application and handles the recipe form, results page, rating route, and `/health` endpoint.
+- pytest: Runs automated unit and integration tests.
+- Bash scripts: Automate common Linux commands for installing, testing, smoke testing, and building the app.
+- GitHub: Stores the project code and tracks changes with Git.
+- GitHub Actions: Runs the CI/CD pipeline automatically when code is pushed or a pull request is opened.
+- tar.gz artifact: Packages the web app into a compressed deployment file that can be downloaded from the pipeline.
+
 ## Project Structure
 
 ```text
@@ -113,36 +122,35 @@ The CI/CD pipeline should automatically:
 
 This gives us proof that every push can be tested and packaged automatically.
 
-## Publish the Tarball to GitHub
+## Developer Workflow
 
-Push a version tag to trigger a GitHub Release with the built tarball attached:
-
-```bash
-git tag v1.0.0
-git push origin main --tags
-```
-
-After the workflow finishes, GitHub will create a Release named `v1.0.0` and attach:
-
-```text
-dist/recipe-recommender-v1.0.0.tar.gz
-dist/latest-artifact.txt
-```
-
-You can then demo both:
-
-- The Actions run showing build, test, smoke test, and packaging
-- The Releases page showing the downloadable tarball asset
-
-## Clean Demo Commands
-
-Create a tiny change on a feature branch:
+Create a branch for each feature:
 
 ```bash
-git checkout -b demo-small-change
+git checkout main
+git pull
+git checkout -b feature-name
 ```
 
-Run the same validation locally that GitHub Actions will run:
+Before pushing, run the same checks that GitHub Actions will run:
+
+```bash
+bash scripts/test.sh
+bash scripts/smoke_test.sh
+bash scripts/build_artifact.sh
+```
+
+Then commit and push:
+
+```bash
+git add .
+git commit -m "Describe the feature"
+git push -u origin feature-name
+```
+
+After pushing, GitHub Actions runs automatically. If the run passes, open the Actions tab and download the `recipe-recommender-deployment` artifact.
+
+## Useful Demo Commands
 
 ```bash
 cd ~/Desktop/334-Dev-ops-Final

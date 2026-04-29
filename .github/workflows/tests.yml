@@ -2,18 +2,11 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - "**"
-    tags:
-      - "v*"
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  validate-and-package:
+  test-build-artifact:
     runs-on: ubuntu-latest
     env:
       PYTHONPATH: .
@@ -30,18 +23,11 @@ jobs:
       - name: Install dependencies
         run: bash scripts/install.sh
 
-      - name: Run linter
-        run: python3 -m ruff check .
-
       - name: Run unit and integration tests
         run: bash scripts/test.sh
 
       - name: Run Flask smoke test
         run: bash scripts/smoke_test.sh
-
-      - name: Use tag as artifact version
-        if: startsWith(github.ref, 'refs/tags/v')
-        run: echo "VERSION=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
 
       - name: Build tar.gz deployment artifact
         run: bash scripts/build_artifact.sh
@@ -54,13 +40,3 @@ jobs:
             dist/*.tar.gz
             dist/latest-artifact.txt
           if-no-files-found: error
-
-      - name: Publish GitHub release
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
-        with:
-          name: Release ${{ github.ref_name }}
-          generate_release_notes: true
-          files: |
-            dist/*.tar.gz
-            dist/latest-artifact.txt

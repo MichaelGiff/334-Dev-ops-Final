@@ -14,7 +14,7 @@ rm -rf "$PACKAGE_DIR"
 mkdir -p "$PACKAGE_DIR" "$DIST_DIR"
 
 cp app.py recommender.py recipes.py requirements.txt README.md "$PACKAGE_DIR"/
-cp -R static templates tests scripts "$PACKAGE_DIR"/
+cp -R static templates scripts "$PACKAGE_DIR"/
 
 {
     echo "app_name=${APP_NAME}"
