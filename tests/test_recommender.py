@@ -45,6 +45,12 @@ def test_recommend_recipes_accepts_common_ingredient_aliases():
     assert recipes[0]["match_score"] == 2
 
 
+def test_recommend_recipes_respects_limit_argument():
+    recipes = recommend_recipes(ingredients_text="rice", limit=1)
+
+    assert len(recipes) == 1
+
+
 def test_vegetarian_preference_can_include_vegan_recipes():
     recipes = recommend_recipes(dietary_preference="vegetarian", ingredients_text="rice, avocado")
     recipe_names = {recipe["name"] for recipe in recipes}
